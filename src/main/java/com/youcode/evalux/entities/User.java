@@ -1,5 +1,13 @@
 package com.youcode.evalux.entities;
 
+import com.youcode.evalux.enums.Role;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity(name="Users")
 @Data
 @NoArgsConstructor
