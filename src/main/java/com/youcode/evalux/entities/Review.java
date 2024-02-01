@@ -3,7 +3,6 @@ package com.youcode.evalux.entities;
 import com.youcode.evalux.enums.Reaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import java.util.UUID;
 import lombok.Data;
 import lombok.NoArgsConstructor;
