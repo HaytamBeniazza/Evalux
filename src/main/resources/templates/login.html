@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>youReview</title>
+</head>
+<body>
+<form action="#" method="POST" th:action="@{/}" th:object="${user}">
+    <label>username</label>
+    <input name="username" th:field="*{username}" type="text"/>
+    <label>password</label>
+    <input name="password" th:field="*{password}" type="password"/>
+    <button>logins</button>
+</form>
+</body>
+</html>
