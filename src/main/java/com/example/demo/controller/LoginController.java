@@ -13,10 +13,7 @@ public class LoginController {
         model.addAttribute("user", new DBUser());
         return "login";
     }
-    @GetMapping("/reviews")
-    public String reviews() {
-        return "reviews";
-    }
+
 
     @GetMapping("/user")
     public String getUser() {
