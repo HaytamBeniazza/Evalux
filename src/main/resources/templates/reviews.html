@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <title>youReview</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="flex justify-center items-center flex-col pt-10">
 <button class="p-2 rounded-md bg-blue-500 text-white absolute right-1 top-1">Logout</button>
+<p th:text="${username}">user</p>
 <p class="font-bold text-[30px]">List of Reviews</p>
 <!-- list of reviews -->
-    <div
-            th:each="review : ${reviews}"
-            class="w-1/2 flex flex-col gap-6">
+<div th:each="review : ${reviews}" class="w-1/2 flex flex-col gap-6">
     <!-- review -->
     <div class="flex flex-col gap-3">
         <p th:text="${review.Title}">Title</p>
@@ -19,10 +21,11 @@
         </p>
         <div class="flex gap-2">
             <button class="p-2 text-white bg-red-500 rounded-md">make a calim</button>
-            <button class="p-2 text-white bg-orange-500 rounded-md">edit</button>
-            <button class="p-2 text-white bg-red-600 rounded-md">delete</button>
+            <button th:if="${review.user == username or role == 'ROLE_ADMIN'}" class="p-2 text-white bg-orange-500 rounded-md">edit</button>
+            <button th:if="${review.user == username or role == 'ROLE_ADMIN'}" class="p-2 text-white bg-red-600 rounded-md">delete</button>
         </div>
     </div>
 </div>
 </body>
+
 </html>
