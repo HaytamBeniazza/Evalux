@@ -1,2 +1,7 @@
-package com.example.demo.enums;public class Reaction {
+package com.example.demo.enums;
+
+public enum Reaction {
+    ANGRY,
+    HAPPY,
+    SAD
 }
