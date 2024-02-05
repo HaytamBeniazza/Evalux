@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @AllArgsConstructor
 public class ReviewController {
@@ -29,8 +30,13 @@ public class ReviewController {
         return "add";
     }
     @GetMapping("/editreview/{id}")
-    public  String edit(Model model, @PathVariable("id") UUID id){
+    public  String Getedit(Model model, @PathVariable("id") UUID id){
         model.addAttribute("review", reviewService.getReviewById(id));
+        return "edit";
+    }
+    @PostMapping("/editreview/{id}")
+    public  String Postedit(Model model, @PathVariable("id") UUID id){
+        reviewService.saveReview(reviewService.getReviewById(id));
         return "edit";
     }
 
