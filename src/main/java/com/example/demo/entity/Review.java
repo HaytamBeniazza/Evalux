@@ -1,19 +1,21 @@
-package com.youcode.evalux.entities;
+package com.example.demo.entity;
 
-import com.youcode.evalux.enums.Reaction;
+import com.example.demo.enums.Reaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import java.util.UUID;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name="Reviews")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,12 +28,12 @@ public class Review {
     private Reaction reaction;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reviewer")
-    private User user;
+    private DBUser user;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-        name = "claimes",
-        joinColumns = @JoinColumn(name = "moderator_id"),
-        inverseJoinColumns = @JoinColumn(name = "review_id")
+            name = "claimes",
+            joinColumns = @JoinColumn(name = "moderator_id"),
+            inverseJoinColumns = @JoinColumn(name = "review_id")
     )
-    private List<User> claimedUser;
+    private List<DBUser> claimedUser;
 }

@@ -1,13 +1,13 @@
-package com.youcode.evalux;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EvaluxApplication {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EvaluxApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 
 }

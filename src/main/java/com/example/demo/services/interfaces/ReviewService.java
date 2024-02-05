@@ -1,6 +1,6 @@
-package com.youcode.evalux.services.interfaces;
+package com.example.demo.services.interfaces;
 
-import com.youcode.evalux.entities.Review;
+import com.example.demo.entity.Review;
 
 import java.util.List;
 import java.util.UUID;

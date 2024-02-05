@@ -1,6 +1,6 @@
-package com.youcode.evalux.repositories;
+package com.example.demo.repository;
 
-import com.youcode.evalux.entities.Review;
+import com.example.demo.entity.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

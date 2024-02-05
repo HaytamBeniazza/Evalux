@@ -1,8 +1,8 @@
-package com.youcode.evalux.services.impl;
+package com.example.demo.services.implementations;
 
-import com.youcode.evalux.entities.Review;
-import com.youcode.evalux.repositories.ReviewRepository;
-import com.youcode.evalux.services.interfaces.ReviewService;
+import com.example.demo.entity.Review;
+import com.example.demo.repository.ReviewRepository;
+import com.example.demo.services.interfaces.ReviewService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.youcode.evalux.enums;
+package com.example.demo.enums;
 
 public enum Reaction {
     ANGRY,
