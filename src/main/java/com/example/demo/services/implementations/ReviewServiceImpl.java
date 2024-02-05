@@ -33,4 +33,11 @@ public class ReviewServiceImpl implements ReviewService {
     public void deleteReview(UUID id) {
         reviewRepository.deleteById(id);
     }
+
+    @Override
+    public Review editReview(Review review) {
+        return reviewRepository.save(review);
+    }
+
+
 }

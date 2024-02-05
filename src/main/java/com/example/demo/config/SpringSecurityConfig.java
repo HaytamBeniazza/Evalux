@@ -18,7 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringSecurityConfig {
 
 
-    private  final   CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(crsf -> crsf.disable()).authorizeHttpRequests(req -> {
