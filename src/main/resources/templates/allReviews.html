@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<div class="flex items-left flex-col mt-11">
+    <div class="p-12 m-12 flex items-left flex-wrap">
+        <div th:each="review : ${reviews}" class="m-8 w-96 px-8 py-4  bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-light text-gray-600 dark:text-gray-400" th:text="${review.date}"></span>
+                <div th:if="${#authorization.expression('hasRole(''ROLE_MODERATOR'')')}">
+                    <form th:action="@{'/reviews/moderator/' + ${review.id} + '/claim'}" method="post">
+                        <button type="submit" class="bg-red-500 px-3 py-1 text-sm font-bold text-white-100 transition-colors duration-300 transform rounded cursor-pointer">Claim</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-2">
+                <a href="#" class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabindex="0" role="link" th:text="${review.title}"></a>
+                <p class="mt-2 text-gray-600 dark:text-gray-300" th:text="${review.message}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+    <a th:href="@{/reviews/create}" class="fixed bottom-3 right-3 bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border  rounded">
+        Add
+    </a>
+</div>
+</body>
+</html>

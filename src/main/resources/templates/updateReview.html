@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+<section class="mt-11 max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+    <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Update review</h2>
+    <form th:object="${review}" th:action="@{/admin/update}" method="post">
+        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div>
+                <label class="text-gray-700 dark:text-gray-200">Title</label>
+                <input disabled type="text" th:field="*{title}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            </div>
+
+            <div>
+                <label class="text-gray-700 dark:text-gray-200">Message</label>
+                <input name="message" th:field="*{message}" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+            </div>
+
+            <div>
+                <label class="text-gray-700 dark:text-gray-200">Reaction:</label>
+                <select disabled th:field="*{reaction}" required class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <option value="HAPPY">Happy</option>
+                    <option value="ANGRY">Angry</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex justify-end mt-6">
+            <input type="submit" value="Update" class="bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border  rounded cursor-pointer">
+        </div>
+    </form>
+</section>
+</body>
+</html>
