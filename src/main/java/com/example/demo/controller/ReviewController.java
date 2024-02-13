@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class ReviewController {
     private  final ReviewService  reviewService;
     private final DBUserRepository userRepository;
     @GetMapping("/reviews")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public String reviews(Model model, Authentication authentication) {
         model.addAttribute("reviews", reviewService.getAllReviews());
         model.addAttribute("username", authentication.getName());
@@ -31,12 +33,14 @@ public class ReviewController {
         return "reviews";
     }
     @GetMapping("/addreview")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public  String add(Model model){
         model.addAttribute("review" , new Review());
         return "add";
     }
 
-    @PostMapping("/addreview")
+    @PostMapping("/add")
+//    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public String addReview(@ModelAttribute Review review, Authentication authentication) {
         review.setDate(LocalDate.now());
 
@@ -50,13 +54,15 @@ public class ReviewController {
 
 
     @GetMapping("/editreview/{id}")
+    @PreAuthorize("hasAnyAuthority('SCOPE_USER', 'SCOPE_ADMIN', 'SCOPE_MODERATOR')")
     public  String edit(Model model, @PathVariable("id") UUID id){
         model.addAttribute("review", reviewService.getReviewById(id));
         return "edit";
     }
 
 
-    @PostMapping("/editreview/{id}")
+    @PostMapping("/edit/{id}")
+    @PreAuthorize("hasAnyAuthority('SCOPE_USER', 'SCOPE_ADMIN', 'SCOPE_MODERATOR')")
     public String editReview(@ModelAttribute @PathVariable("id") UUID id, Review review, Authentication authentication) {
 
         Review currentReview = reviewService.getReviewById(id);
@@ -69,12 +75,10 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-    @GetMapping("/deletereview/{id}")
-    public  String delete(Model model){
-        return "delete";
-    }
 
-    @PostMapping("/deletereview/{id}")
+
+    @GetMapping("/deletereview/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public String deleteReview(@PathVariable("id") UUID id,Authentication authentication) {
 
 
